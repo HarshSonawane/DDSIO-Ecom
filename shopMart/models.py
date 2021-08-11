@@ -28,10 +28,13 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.product_Name
+    
+    def get_images(self):
+        return ProductImage.objects.filter(product=self)
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
-    images = models.FileField(upload_to="myApp/images")
+    image = models.ImageField(upload_to="myApp/images")
  
     def __str__(self):
         return self.product_Name
